@@ -167,13 +167,18 @@ public class Compute {
 	/**
 	 * 计算总目录下所有每个目录中词语的tf-idf向量
 	 * @param dir：工程data总目录
-	 * @return ：总目录下每个目录词语的tf-idf，向量;格式：Map<dirname,Map<filename,Map<word,tfidf>>>
+	 * @return ：总目录下每个目录词语的tf-idf，向量;格式：HashMap<dirname,Map<filename,HashMap<word,tfidf>>>
+	 * @throws Exception 
 	 */
-	public Map<String, Map<String, HashMap<String, Float>>> getTfIdfOfAll(String dirPath){
-		File dir = new File(dirPath);
-		Map<String, Map<String, HashMap<String, Float>>> tfIdfOfAll = new Map<String, Map<String, HashMap<String, Float>>>();
-		
-		
+	public HashMap<String, Map<String, HashMap<String, Float>>> getTfIdfOfAll(String dirPath) throws Exception{
+		//File dir = new File(dirPath);
+		List<String> dirList = Read.getDirList(dirPath);
+		HashMap<String, Map<String, HashMap<String, Float>>> tfIdfOfAll = new HashMap<String, Map<String, HashMap<String, Float>>>();
+		for (String path : dirList){
+			Map<String, HashMap<String, Float>> tempMap = getTfIdf(path);
+			tfIdfOfAll.put(path, tempMap);
+		}
+		return tfIdfOfAll;
 	}
 	
 	/**
