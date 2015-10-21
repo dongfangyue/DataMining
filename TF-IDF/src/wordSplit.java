@@ -35,7 +35,7 @@ public class wordSplit {
 	 * @throws IOException
 	 */
 	public wordSplit() throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("../data/data.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("./dictionary/data.txt"));
 		String line = null;
 		while ((line = br.readLine()) != null) {
 			String[] temp = line.split(" ");
@@ -50,7 +50,7 @@ public class wordSplit {
 	 * @throws Exception
 	 */
 	private void getStopWord() throws Exception{
-		BufferedReader br = new BufferedReader(new FileReader("../data/stopwords.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("./dictionary/stopwords.txt"));
 		String line = null;
 		while ((line = br.readLine()) != null) {
 			String[] temp = line.split(" ");
@@ -65,7 +65,7 @@ public class wordSplit {
 	 * @throws Exception
 	 */
 	private void getMark() throws Exception{
-		BufferedReader br = new BufferedReader(new FileReader("../data/mark.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("./dictionary/mark.txt"));
 		String line = null;
 		while((line = br.readLine()) != null){
 			String[] temp = line.split(" ");

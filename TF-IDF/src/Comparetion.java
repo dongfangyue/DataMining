@@ -79,8 +79,8 @@ public class Comparetion{
 		return accuracyRate; 
 	}
 	public void printAccuracyRate() throws Exception{
-		String inputPath = "InputFile.txt";
-		String stardPath = "StardFile.txt";
+		String inputPath = "./comparetData/InputFile.txt";
+		String stardPath = "./ComparetData/StardFile.txt";
 
 		float rate = 0;
 		//Comparetion compare = new Comparetion();
