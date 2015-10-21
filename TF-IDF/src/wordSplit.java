@@ -19,7 +19,11 @@ public class wordSplit {
 	private Map<String, Integer> DictMap = new HashMap<String, Integer>();
 	private Map<String, Integer> StopMap = new HashMap<String, Integer>();
 	private Map<String, Integer> MarkMap = new HashMap<String, Integer>();
-
+	
+	/**
+	 * 保存分词的所用时间，单位：毫秒
+	 */
+	private int cutWordTime = 0;
 	/**
 	 * 最大切词长度,即为五个汉字
 	 */
@@ -67,7 +71,7 @@ public class wordSplit {
 			String[] temp = line.split(" ");
 			line = temp[0].trim();
 			MarkMap.put(line, 0);
-			System.out.println(line);
+			// System.out.println(line);
 		}
 		br.close();
 	}
@@ -79,6 +83,7 @@ public class wordSplit {
 	 * @throws Exception
 	 */
 	private static String readFile(String FilePath) throws Exception{
+		//System.out.println("readFile:" + FilePath);
 		BufferedReader br = new BufferedReader(new FileReader(FilePath));
 		StringBuffer word = new StringBuffer();
 		String txtLine = null;
@@ -377,12 +382,16 @@ public class wordSplit {
 	 * @return
 	 */
 	public List<String> cutMark(List<String> result){
-		for(int i=0; i < result.size(); i++){
-			if(MarkMap.containsKey(result.get(i))){
-					result.remove(i);
+		List<String> newlist = new ArrayList<String>();
+		for (int i = 0; i < result.size(); i++) {
+			String temp = result.get(i);
+			String flag = temp.replaceAll("[\\pP\\p{Punct}]", "");// 正则匹配标点符号
+			//flag = flag.replaceAll(" ", "");
+			if ((!flag.equals("")) && (!flag.equals("　"))) {
+				newlist.add(flag);
 			}
 		}
-		return result;
+		return newlist;
 	}
 
 	/**
@@ -421,6 +430,7 @@ public class wordSplit {
 		List<String> returnList = wordSplit.cutMark(resultList);
 		//return returnList;
 		String[] returnArrary = returnList.toArray(new String[returnList.size()]);
+		//System.out.println(returnList);
 		return returnArrary;
 	}
 	

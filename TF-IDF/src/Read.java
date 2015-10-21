@@ -1,8 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Read {
 	
@@ -16,6 +14,7 @@ public class Read {
 	 */
 	public static List<String> getDirList(String dirPath){
 
+		
 		File dir = new File(dirPath);
 		if (!dir.isDirectory()) {
 		    System.out.println("输入的参数应该为[文件夹名]");
